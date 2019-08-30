@@ -1,0 +1,203 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`direct-require: direct-require 1`] = `
+"/* 0 */
+/***/ (function(module, exports, __webpack_require__) {
+
+console.log(\\"index\\");
+__webpack_require__(1);
+
+
+/***/ }),
+/* 1 */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(2);
+
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports) {
+
+console.log(\\"other\\");
+
+
+/***/ })
+"
+`;
+
+exports[`folder-browser-json-index-file: folder-browser-json-index-file 1`] = `
+"/* 0 */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(1);
+__webpack_require__(2);
+
+
+/***/ }),
+/* 1 */
+/***/ (function(module, exports) {
+
+console.log(\\"other\\");
+
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports) {
+
+console.log(\\"index\\");
+
+
+/***/ })
+"
+`;
+
+exports[`nested-directory: nested-directory 1`] = `
+"/* 0 */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(1);
+console.log(\\"index\\");
+
+
+/***/ }),
+/* 1 */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(2);
+__webpack_require__(3);
+
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports) {
+
+console.log(\\"other\\");
+
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports) {
+
+console.log(\\"file\\");
+
+
+/***/ })
+"
+`;
+
+exports[`remap-issuer-relative: remap-issuer-relative 1`] = `
+"/* 0 */
+/***/ (function(module, exports, __webpack_require__) {
+
+console.log(\\"index\\");
+__webpack_require__(1);
+
+
+/***/ }),
+/* 1 */
+/***/ (function(module, exports) {
+
+console.log(\\"remaped\\");
+
+
+/***/ })
+"
+`;
+
+exports[`remap-resource-relative: remap-resource-relative 1`] = `
+"/* 0 */
+/***/ (function(module, exports, __webpack_require__) {
+
+console.log(\\"index\\");
+__webpack_require__(1);
+
+
+/***/ }),
+/* 1 */
+/***/ (function(module, exports) {
+
+console.log(\\"remaped\\");
+
+
+/***/ })
+"
+`;
+
+exports[`remap-with-flag-off: remap-with-flag-off 1`] = `
+"/* 0 */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(1);
+__webpack_require__(2);
+
+
+/***/ }),
+/* 1 */
+/***/ (function(module, exports) {
+
+console.log(\\"other\\");
+
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports) {
+
+console.log(\\"index\\");
+
+
+/***/ })
+"
+`;
+
+exports[`remap-with-flag-on: remap-with-flag-on 1`] = `
+"/* 0 */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(1);
+__webpack_require__(2);
+
+
+/***/ }),
+/* 1 */
+/***/ (function(module, exports) {
+
+console.log(\\"remaped\\");
+
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports) {
+
+console.log(\\"index\\");
+
+
+/***/ })
+"
+`;
+
+exports[`remap-within-browser-json: remap-within-browser-json 1`] = `
+"/* 0 */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(1);
+__webpack_require__(2);
+
+
+/***/ }),
+/* 1 */
+/***/ (function(module, exports) {
+
+console.log(\\"remaped\\");
+
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports) {
+
+console.log(\\"index\\");
+
+
+/***/ })
+"
+`;

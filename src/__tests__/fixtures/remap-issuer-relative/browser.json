@@ -1,0 +1,8 @@
+{
+  "requireRemap": [
+    {
+      "from": "./nested/other.js",
+      "to": "./nested/other-remaped.js"
+    }
+  ]
+}

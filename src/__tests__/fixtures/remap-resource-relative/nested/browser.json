@@ -1,0 +1,8 @@
+{
+  "requireRemap": [
+    {
+      "from": "./other.js",
+      "to": "./other-remaped.js"
+    }
+  ]
+}

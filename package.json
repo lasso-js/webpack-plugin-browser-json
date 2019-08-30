@@ -1,0 +1,60 @@
+{
+  "name": "webpack-plugin-browser-json",
+  "description": "A webpack plugin that allows for an additional config file for browser dependencies.",
+  "version": "1.0.0",
+  "author": "Dylan Piercey <dpiercey@ebay.com>",
+  "bugs": "https://github.com/lasso-js/webpack-plugin-browser-json/issues",
+  "dependencies": {
+    "loader-utils": "^1.2.3",
+    "raptor-regexp": "^1.0.1"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^8.1.0",
+    "@commitlint/config-conventional": "^8.1.0",
+    "@types/jest": "^24.0.18",
+    "@types/mz": "0.0.32",
+    "@types/node": "^12.7.2",
+    "coveralls": "^3.0.6",
+    "husky": "^3.0.4",
+    "jest": "^24.9.0",
+    "lint-staged": "^9.2.5",
+    "memory-fs": "^0.4.1",
+    "mz": "^2.7.0",
+    "prettier": "^1.18.2",
+    "standard-version": "^7.0.0",
+    "ts-jest": "^24.0.2",
+    "tslint": "^5.19.0",
+    "tslint-config-prettier": "^1.18.0",
+    "typescript": "^3.6.2",
+    "webpack": "^4.39.3"
+  },
+  "files": [
+    "dist"
+  ],
+  "homepage": "https://github.com/lasso-js/webpack-plugin-browser-json",
+  "keywords": [
+    "assets",
+    "browser.json",
+    "lasso",
+    "plugin",
+    "webpack"
+  ],
+  "license": "MIT",
+  "main": "dist/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lasso-js/webpack-plugin-browser-json"
+  },
+  "scripts": {
+    "build": "tsc",
+    "ci:report": "cat coverage/lcov.info | coveralls",
+    "ci:test": "jest --ci --coverage",
+    "format": "prettier \"**/*.{json,md,js,ts}\" --write",
+    "lint": "tsc --noEmit && tslint -t codeFrame -c tslint.json 'src/**/*.ts'",
+    "prepublishOnly": "npm run build",
+    "release": "standard-version",
+    "test": "jest -o",
+    "test:watch": "jest -o --watch"
+  },
+  "types": "dist/index.d.ts"
+}

@@ -1,0 +1,9 @@
+{
+  "dependencies": ["require: ./other.js"],
+  "requireRemap": [
+    {
+      "from": "./other.js",
+      "to": "./other-remaped.js"
+    }
+  ]
+}

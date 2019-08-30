@@ -1,0 +1,10 @@
+{
+  "dependencies": ["./other.js"],
+  "requireRemap": [
+    {
+      "if-flag": "test-flag",
+      "from": "./other.js",
+      "to": "./other-remaped.js"
+    }
+  ]
+}
