@@ -11,7 +11,6 @@ const BROWSER_JSON_EXTENSION = /[/.]browser\.json$/;
 export class BrowserJSONPlugin {
   private _flagSet: FlagSet;
   constructor({ flags = [] }: PluginOptions = {}) {
-    flags.push("IS_WEBPACK");
     this._flagSet = new FlagSet(flags);
   }
 
@@ -46,8 +45,7 @@ export class BrowserJSONPlugin {
       compiler.options.module = { rules: [] };
     }
 
-    const { extensions } = compiler.options.resolve;
-    extensions.splice(extensions.indexOf(".js") + 1 || extensions.length, 0, ".browser.json");
+    compiler.options.resolve.extensions.push(".browser.json");
     compiler.options.module.rules.unshift(browserJSONRule);
 
     compiler.hooks.normalModuleFactory.tap(PLUGIN_NAME, moduleFactory => {
@@ -57,7 +55,7 @@ export class BrowserJSONPlugin {
       > = new Map();
       const baseResolver = (moduleFactory as any).getResolver("normal");
 
-      const resolveFile = (dir: string, request: string, resolveOptions): Promise<string> =>
+      const resolveFile = (dir: string, request: string, resolveOptions: any): Promise<string|false> =>
         new Promise((resolve, reject) => {
           baseResolver
             .withOptions(resolveOptions)
@@ -66,7 +64,7 @@ export class BrowserJSONPlugin {
               dir,
               request,
               {},
-              (err: Error | null, result: string) =>
+              (err: Error | null, result: string|false) =>
                 err ? reject(err) : resolve(result)
             );
         });
@@ -99,6 +97,11 @@ export class BrowserJSONPlugin {
 
           const [, rawRequest] = /^(?:.*?!)*([^?]+)/.exec(request)!;
           const resource = await resolveFile(context, rawRequest, resolveOptions);
+
+          if (resource === false) {
+            return resolveInfo;
+          }
+
           resolveInfo.request = request.replace(rawRequest, resource);
 
           const issuerDir = issuer && path.dirname(issuer);
@@ -132,11 +135,7 @@ export class BrowserJSONPlugin {
                   resolveOptions
                 )) === resolvedResource
               ) {
-                resolvedResource = await resolveFile(
-                  issuerDir,
-                  remap.to,
-                  resolveOptions
-                );
+                resolvedResource = resolveRelative(remap.to, issuerDir);
                 break;
               }
             }
@@ -152,11 +151,7 @@ export class BrowserJSONPlugin {
                     resolveOptions
                   )) === resolvedResource
                 ) {
-                  resolvedResource = await resolveFile(
-                    resourceDir,
-                    remap.to,
-                    resolveOptions
-                  );
+                  resolvedResource = resolveRelative(remap.to, resourceDir);
                   break;
                 }
               }
@@ -179,4 +174,12 @@ export class BrowserJSONPlugin {
       );
     });
   }
+}
+
+function resolveRelative(request: string, from: string) {
+  if (request[0] !== ".") {
+    return request;
+  }
+
+  return path.join(from, request);
 }

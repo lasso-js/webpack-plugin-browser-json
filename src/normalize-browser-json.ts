@@ -35,7 +35,7 @@ export default function(options: {
           (dependency.type && ALLOWED_TYPES.indexOf(dependency.type) === -1)
         ) {
           throw new Error(
-            `Unable to process "browser.json" file. Dependency "${dependency}" not supported.`
+            `Unable to process "browser.json" file. Dependency "${JSON.stringify(dependency)}" not supported.`
           );
         }
 
