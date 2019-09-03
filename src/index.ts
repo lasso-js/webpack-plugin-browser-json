@@ -1,4 +1,5 @@
 import path from "path";
+import { Buffer } from "buffer";
 import { Compiler, RuleSetRule } from "webpack";
 import normalizeBrowserJson from "./normalize-browser-json";
 import { PluginOptions } from "./types";
@@ -168,7 +169,7 @@ export class BrowserJSONPlugin {
             !BROWSER_JSON_EXTENSION.test(issuer) &&
             !BROWSER_JSON_EXTENSION.test(resolvedResource)
           ) {
-            resolveInfo.request = `${resourceDirBrowserJSONFile}?request=${encodeURIComponent(resolveInfo.request)}`;
+            resolveInfo.request = `${resourceDirBrowserJSONFile}?request=${Buffer.from(resolveInfo.request).toString("hex")}`;
           }
         }
       );
