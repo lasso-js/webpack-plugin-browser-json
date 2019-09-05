@@ -12,12 +12,19 @@ export default async function(this: loader.LoaderContext, content: string) {
     resourceQuery && resourceQuery[0] === "?"
       ? parseQuery(this.resourceQuery)
       : {};
-
-  return normalizeBrowserJson({
-    flags: options.flags,
-    content
-  })
-    .dependencies.map(toRequire)
-    .concat(query.request ? `module.exports = ${toRequire(Buffer.from(query.request, "hex").toString("utf-8"))}` : [])
+  return (query.request
+    ? [
+        `module.exports = ${toRequire(
+          Buffer.from(query.request, "hex").toString("utf-8")
+        )}`
+      ]
+    : []
+  )
+    .concat(
+      normalizeBrowserJson({
+        flags: options.flags,
+        content
+      }).dependencies.map(toRequire)
+    )
     .join("\n");
 }

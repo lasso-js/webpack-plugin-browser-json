@@ -29,21 +29,21 @@ exports[`folder-browser-json-index-file: folder-browser-json-index-file 1`] = `
 "/* 0 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(1)
-module.exports = __webpack_require__(2)
+module.exports = __webpack_require__(1)
+__webpack_require__(2)
 
 /***/ }),
 /* 1 */
 /***/ (function(module, exports) {
 
-console.log(\\"other\\");
+console.log(\\"index\\");
 
 
 /***/ }),
 /* 2 */
 /***/ (function(module, exports) {
 
-console.log(\\"index\\");
+console.log(\\"other\\");
 
 
 /***/ })
@@ -62,21 +62,21 @@ console.log(\\"index\\");
 /* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(2)
-module.exports = __webpack_require__(3)
+module.exports = __webpack_require__(2)
+__webpack_require__(3)
 
 /***/ }),
 /* 2 */
 /***/ (function(module, exports) {
 
-console.log(\\"other\\");
+console.log(\\"file\\");
 
 
 /***/ }),
 /* 3 */
 /***/ (function(module, exports) {
 
-console.log(\\"file\\");
+console.log(\\"other\\");
 
 
 /***/ })
@@ -125,21 +125,21 @@ exports[`remap-with-flag-off: remap-with-flag-off 1`] = `
 "/* 0 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(1)
-module.exports = __webpack_require__(2)
+module.exports = __webpack_require__(1)
+__webpack_require__(2)
 
 /***/ }),
 /* 1 */
 /***/ (function(module, exports) {
 
-console.log(\\"other\\");
+console.log(\\"index\\");
 
 
 /***/ }),
 /* 2 */
 /***/ (function(module, exports) {
 
-console.log(\\"index\\");
+console.log(\\"other\\");
 
 
 /***/ })
@@ -150,21 +150,21 @@ exports[`remap-with-flag-on: remap-with-flag-on 1`] = `
 "/* 0 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(1)
-module.exports = __webpack_require__(2)
+module.exports = __webpack_require__(1)
+__webpack_require__(2)
 
 /***/ }),
 /* 1 */
 /***/ (function(module, exports) {
 
-console.log(\\"remaped\\");
+console.log(\\"index\\");
 
 
 /***/ }),
 /* 2 */
 /***/ (function(module, exports) {
 
-console.log(\\"index\\");
+console.log(\\"remaped\\");
 
 
 /***/ })
@@ -175,21 +175,21 @@ exports[`remap-within-browser-json: remap-within-browser-json 1`] = `
 "/* 0 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(1)
-module.exports = __webpack_require__(2)
+module.exports = __webpack_require__(1)
+__webpack_require__(2)
 
 /***/ }),
 /* 1 */
 /***/ (function(module, exports) {
 
-console.log(\\"remaped\\");
+console.log(\\"index\\");
 
 
 /***/ }),
 /* 2 */
 /***/ (function(module, exports) {
 
-console.log(\\"index\\");
+console.log(\\"remaped\\");
 
 
 /***/ })
