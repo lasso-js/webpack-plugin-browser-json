@@ -29,15 +29,14 @@ exports[`folder-browser-json-index-file: folder-browser-json-index-file 1`] = `
 "/* 0 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(1)
-__webpack_require__(2)
+__webpack_require__(1);console.log(\\"index\\");
+
 
 /***/ }),
 /* 1 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-console.log(\\"index\\");
-
+__webpack_require__(2)
 
 /***/ }),
 /* 2 */
@@ -62,15 +61,14 @@ console.log(\\"index\\");
 /* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(2)
-__webpack_require__(3)
+__webpack_require__(2);console.log(\\"file\\");
+
 
 /***/ }),
 /* 2 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-console.log(\\"file\\");
-
+__webpack_require__(3)
 
 /***/ }),
 /* 3 */
@@ -125,15 +123,14 @@ exports[`remap-with-flag-off: remap-with-flag-off 1`] = `
 "/* 0 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(1)
-__webpack_require__(2)
+__webpack_require__(1);console.log(\\"index\\");
+
 
 /***/ }),
 /* 1 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-console.log(\\"index\\");
-
+__webpack_require__(2)
 
 /***/ }),
 /* 2 */
@@ -150,15 +147,14 @@ exports[`remap-with-flag-on: remap-with-flag-on 1`] = `
 "/* 0 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(1)
-__webpack_require__(2)
+__webpack_require__(1);console.log(\\"index\\");
+
 
 /***/ }),
 /* 1 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-console.log(\\"index\\");
-
+__webpack_require__(2)
 
 /***/ }),
 /* 2 */
@@ -175,15 +171,14 @@ exports[`remap-within-browser-json: remap-within-browser-json 1`] = `
 "/* 0 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(1)
-__webpack_require__(2)
+__webpack_require__(1);console.log(\\"index\\");
+
 
 /***/ }),
 /* 1 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-console.log(\\"index\\");
-
+__webpack_require__(2)
 
 /***/ }),
 /* 2 */

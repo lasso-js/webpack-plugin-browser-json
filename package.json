@@ -6,7 +6,8 @@
   "bugs": "https://github.com/lasso-js/webpack-plugin-browser-json/issues",
   "dependencies": {
     "loader-utils": "^1.2.3",
-    "raptor-regexp": "^1.0.1"
+    "raptor-regexp": "^1.0.1",
+    "webpack-sources": "^1.4.3"
   },
   "devDependencies": {
     "@commitlint/cli": "^8.1.0",
