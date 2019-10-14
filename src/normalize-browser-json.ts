@@ -3,7 +3,13 @@ import FlagSet from "./flag-set";
 import { BrowserJSON, Dependency, Conditional, Remap } from "./types";
 
 const TYPE_STRING_REG = /^(?:(.+?):\s*)?(.*)$/;
-const ALLOWED_TYPES = ["require", "require-run", "package", undefined];
+const ALLOWED_TYPES = [
+  "require",
+  "require-run",
+  "package",
+  "less-import",
+  undefined
+];
 
 export default function(options: {
   content: string;
@@ -35,7 +41,9 @@ export default function(options: {
           (dependency.type && ALLOWED_TYPES.indexOf(dependency.type) === -1)
         ) {
           throw new Error(
-            `Unable to process "browser.json" file. Dependency "${JSON.stringify(dependency)}" not supported.`
+            `Unable to process "browser.json" file. Dependency "${JSON.stringify(
+              dependency
+            )}" not supported.`
           );
         }
 
