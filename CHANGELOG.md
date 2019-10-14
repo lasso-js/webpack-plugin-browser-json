@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.1.0](https://github.com/lasso-js/webpack-plugin-browser-json/compare/v1.0.4...v1.1.0) (2019-10-14)
+
+
+### Features
+
+* add less-import as a recognized type ([9e1dfb8](https://github.com/lasso-js/webpack-plugin-browser-json/commit/9e1dfb8))
+
 ### [1.0.4](https://github.com/lasso-js/webpack-plugin-browser-json/compare/v1.0.3...v1.0.4) (2019-09-07)
 
 
