@@ -1,10 +1,10 @@
 import path from "path";
 import { Compiler } from "webpack";
-import { ConcatSource } from "webpack-sources";
 import normalizeBrowserJson from "./normalize-browser-json";
 import { PluginOptions } from "./types";
 import FlagSet from "./flag-set";
 
+const LOADER = require.resolve("./loader");
 const PLUGIN_NAME = "BrowserJSONPlugin";
 const BROWSER_JSON = "browser.json";
 const BROWSER_JSON_EXTENSION = /[/.]browser\.json$/;
@@ -17,6 +17,11 @@ export class BrowserJSONPlugin {
 
   public apply(compiler: Compiler) {
     const { inputFileSystem } = compiler;
+
+    const browserJSONCache: Map<
+      string,
+      ReturnType<typeof normalizeBrowserJson> | undefined
+    > = new Map();
 
     const tryReadFile = (request: string): Promise<string | undefined> => {
       return new Promise(resolve => {
@@ -36,24 +41,47 @@ export class BrowserJSONPlugin {
       });
     };
 
+    const tryReadBrowserJSON = async (filename: string) => {
+      if (browserJSONCache.has(filename)) {
+        return browserJSONCache.get(filename);
+      }
+
+      const content = await tryReadFile(filename);
+      const result = content
+        ? normalizeBrowserJson({
+            content,
+            flags: this._flagSet
+          })
+        : undefined;
+      browserJSONCache.set(filename, result);
+      return result;
+    };
+
     if (!compiler.options.module) {
       compiler.options.module = { rules: [] };
     }
 
     compiler.options.resolve.extensions.push(".browser.json");
+
     compiler.options.module.rules.push({
       enforce: "pre",
       type: "javascript/auto",
+      loader: LOADER,
       test: BROWSER_JSON_EXTENSION,
-      loader: require.resolve("./loader"),
       options: { flags: this._flagSet }
     });
 
+    compiler.options.module.rules.unshift({
+      enforce: "post",
+      loader: LOADER,
+      test: /(?![./]browser\.json)$/
+    });
+
+    compiler.hooks.done.tap(PLUGIN_NAME, () => {
+      browserJSONCache.clear();
+    });
+
     compiler.hooks.normalModuleFactory.tap(PLUGIN_NAME, moduleFactory => {
-      const browserJSONCache: Map<
-        string,
-        ReturnType<typeof normalizeBrowserJson> | undefined
-      > = new Map();
       const baseResolver = (moduleFactory as any).getResolver("normal");
 
       const resolveFile = (
@@ -73,22 +101,6 @@ export class BrowserJSONPlugin {
                 err ? reject(err) : resolve(result)
             );
         });
-
-      const tryReadBrowserJSON = async (filename: string) => {
-        if (browserJSONCache.has(filename)) {
-          return browserJSONCache.get(filename);
-        }
-
-        const content = await tryReadFile(filename);
-        const result = content
-          ? normalizeBrowserJson({
-              content,
-              flags: this._flagSet
-            })
-          : undefined;
-        browserJSONCache.set(filename, result);
-        return result;
-      };
 
       // Handle browser.json remaps before webpacks resolver runs.
       moduleFactory.hooks.beforeResolve.tapPromise(
@@ -170,50 +182,6 @@ export class BrowserJSONPlugin {
           }
         }
       );
-
-      // Inline requires to folder browser.json files by monkey patching the parser.
-      moduleFactory.hooks.parser
-        .for("javascript/auto")
-        .tap(PLUGIN_NAME, parser => {
-          const { parse } = parser;
-          parser.parse = function(content, { current }) {
-            if (
-              current.resource &&
-              !BROWSER_JSON_EXTENSION.test(current.resource)
-            ) {
-              const resourceDirBrowserJSONFile = path.join(
-                path.dirname(current.resource),
-                "browser.json"
-              );
-
-              if (
-                !(
-                  resourceDirBrowserJSONFile === current.resource ||
-                  (current.issuer &&
-                    current.issuer.resource === resourceDirBrowserJSONFile)
-                )
-              ) {
-                const resourceDirBrowserJSON = browserJSONCache.get(
-                  resourceDirBrowserJSONFile
-                );
-
-                if (
-                  resourceDirBrowserJSON &&
-                  resourceDirBrowserJSON.dependencies.length
-                ) {
-                  const requireStr = "require('./browser.json');";
-                  arguments[0] = requireStr + content;
-                  current._source = new ConcatSource(
-                    requireStr,
-                    current._source
-                  );
-                }
-              }
-            }
-
-            return parse.apply(this, arguments);
-          };
-        });
     });
   }
 }
