@@ -25,31 +25,6 @@ console.log(\\"other\\");
 "
 `;
 
-exports[`folder-and-direct-require: folder-and-direct-require 1`] = `
-"/* 0 */
-/***/ (function(module, exports, __webpack_require__) {
-
-__webpack_require__(1);console.log(\\"index\\");
-__webpack_require__(1);
-
-
-/***/ }),
-/* 1 */
-/***/ (function(module, exports, __webpack_require__) {
-
-__webpack_require__(2)
-
-/***/ }),
-/* 2 */
-/***/ (function(module, exports) {
-
-console.log(\\"other\\");
-
-
-/***/ })
-"
-`;
-
 exports[`folder-browser-json-index-file: folder-browser-json-index-file 1`] = `
 "/* 0 */
 /***/ (function(module, exports, __webpack_require__) {
@@ -110,18 +85,12 @@ exports[`remap-issuer-relative: remap-issuer-relative 1`] = `
 "/* 0 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(1);console.log(\\"index\\");
-__webpack_require__(2);
+console.log(\\"index\\");
+__webpack_require__(1);
 
 
 /***/ }),
 /* 1 */
-/***/ (function(module, exports) {
-
-
-
-/***/ }),
-/* 2 */
 /***/ (function(module, exports) {
 
 console.log(\\"remaped\\");
@@ -141,15 +110,9 @@ __webpack_require__(1);
 
 /***/ }),
 /* 1 */
-/***/ (function(module, exports, __webpack_require__) {
-
-__webpack_require__(2);console.log(\\"remaped\\");
-
-
-/***/ }),
-/* 2 */
 /***/ (function(module, exports) {
 
+console.log(\\"remaped\\");
 
 
 /***/ })
