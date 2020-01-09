@@ -7,7 +7,9 @@ import FlagSet from "./flag-set";
 
 const PLUGIN_NAME = "BrowserJSONPlugin";
 const BROWSER_JSON = "browser.json";
-const BROWSER_JSON_EXTENSION = /[/.]browser\.json$/;
+const BROWSER_JSON_EXTENSION = new RegExp(
+  `[${path.sep === "/" ? "/" : "\\"}.]browser\\.json$`
+);
 
 export class BrowserJSONPlugin {
   private _flagSet: FlagSet;
